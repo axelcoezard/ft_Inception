@@ -1,0 +1,26 @@
+services:
+  #================================= NGINX =================================#
+  nginx:
+    container_name: inception_nginx
+    image: nginx
+
+    restart: unless-stopped
+
+  #================================ MARIADB ================================#
+  mariadb:
+    container_name: inception_mariadb
+    image: mariadb
+
+    restart: unless-stopped
+
+  #=============================== WORDPRESS ===============================#
+  wordpress:
+    container_name: inception_wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+
+    restart: unless-stopped
+
+  #=========================================================================#
+volumes:
