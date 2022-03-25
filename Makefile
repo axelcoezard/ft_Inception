@@ -17,7 +17,6 @@ VERSION		:=	1.0
 # COMPILATION
 # -----------------------------------------------------------------------------
 COMPOSE		:=	docker-compose
-REMOVE		:=	rm -rf
 
 # -----------------------------------------------------------------------------
 # COLORS
@@ -35,6 +34,8 @@ __EOC		:=	"\033[0;0m"
 all: clean build
 
 build:
+	@cd srcs
+	@docker-compose build
 	@echo ${__GREEN}"ready"${__WHITE}" - project is running"${__EOC}
 
 clean:
@@ -42,7 +43,11 @@ clean:
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker's data"${__EOC}
 
 fclean: clean
-	@${REMOVE} ${NAME}
+	@docker stop ${docker ps -qa}
+	@docker rm ${docker ps -qa}
+	@docker rmi ${docker images -qa}
+	@docker volume rm ${docker volume ls -q}
+	@docker network rm ${docker network ls -q}
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
 
 re: fclean all
