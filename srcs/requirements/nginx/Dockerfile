@@ -1,9 +1,8 @@
-FROM debian:buster
+FROM alpine:3.14
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN
-
-
+RUN apk update
+RUN apk upgrade
+RUN apk add nginx
+RUN apk add openssl
 
 EXPOSE 80 443
