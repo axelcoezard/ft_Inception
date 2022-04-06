@@ -12,7 +12,7 @@
 
 version: "3.9"
 services:
-  #=================================== NGINX ==================================#
+  #==== NGINX =================================================================#
   nginx:
     container_name: inception_nginx
     build: requirements/nginx
@@ -24,7 +24,7 @@ services:
       - inception
     restart: unless-stopped
 
-  #================================== MARIADB =================================#
+  #==== MARIADB ===============================================================#
   mariadb:
     container_name: inception_mariadb
     build: requirements/mariadb
@@ -33,7 +33,7 @@ services:
       - inception
     restart: unless-stopped
 
-  #================================= WORDPRESS ================================#
+  #==== WORDPRESS =============================================================#
   wordpress:
     container_name: inception_wordpress
     build: requirements/wordpress
