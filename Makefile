@@ -6,7 +6,7 @@
 #    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 10:39:56 by acoezard          #+#    #+#              #
-#    Updated: 2022/04/06 15:52:24 by acoezard         ###   ########.fr        #
+#    Updated: 2022/04/08 12:54:40 by acoezard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,8 @@ clean:
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker data"${__EOC}
 
 fclean: clean
-	@docker stop ${shell docker ps -qa} &> /dev/null
-	@docker rm ${shell docker ps -qa} &> /dev/null
+#	@docker stop ${shell docker ps -qa} &> /dev/null
+#	@docker rm ${shell docker ps -qa} &> /dev/null
 	@docker rmi ${shell docker images -qa} &> /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
 #	@docker volume rm ${shell docker volume ls -q} &> /dev/null
