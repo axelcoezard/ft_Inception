@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: acoezard <acoezard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/06 11:57:53 by acoezard          #+#    #+#              #
-#    Updated: 2022/04/08 12:12:51 by acoezard         ###   ########.fr        #
+#    Updated: 2022/04/08 16:41:02 by acoezard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ RUN		apk upgrade
 RUN		apk add nginx
 
 RUN		mkdir -p /var/www/html/
-RUN		echo "<h1>Hello World!</h1>" > /var/www/html/index.html
 
 COPY	conf/default.conf /etc/nginx/http.d/default.conf
 

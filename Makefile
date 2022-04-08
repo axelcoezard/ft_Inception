@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: acoezard <acoezard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 10:39:56 by acoezard          #+#    #+#              #
-#    Updated: 2022/04/08 12:54:40 by acoezard         ###   ########.fr        #
+#    Updated: 2022/04/08 17:00:45 by acoezard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ start:
 
 stop:
 	@docker compose ${FLAGS} stop &> /dev/null
-	@echo ${__GREEN}"ready"${__WHITE}" - docker services have been stopped"${__EOC}
+	@echo ${__GREEN}"stopped"${__WHITE}" - docker services have been stopped"${__EOC}
 
 status:
 	@docker compose ${FLAGS} ps
@@ -58,16 +58,16 @@ clean:
 	@rm -rf ./data/ &> /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker data"${__EOC}
 
-fclean: clean
-#	@docker stop ${shell docker ps -qa} &> /dev/null
-#	@docker rm ${shell docker ps -qa} &> /dev/null
-	@docker rmi ${shell docker images -qa} &> /dev/null
+fclean: stop clean
+#	@docker stop ${shell docker ps -qa} > /dev/null
+#	@docker rm ${shell docker ps -qa} > /dev/null
+#	@docker rmi ${shell docker images -qa} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
-#	@docker volume rm ${shell docker volume ls -q} &> /dev/null
-#	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker volumes(s)"${__EOC}
-	@docker network rm ${shell docker network ls --filter type=custom -q} &> /dev/null
+	@docker volume rm ${shell docker volume ls -q} > /dev/null
+	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker volumes(s)"${__EOC}
+	@docker network rm ${shell docker network ls --filter type=custom -q} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker network(s)"${__EOC}
-	@docker builder prune -af &> /dev/null
+	@docker builder prune -af > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker cache"${__EOC}
 
 re: fclean all
