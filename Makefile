@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acoezard <acoezard@student.42.fr>          +#+  +:+       +#+         #
+#    By: acoezard <acoezard@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 10:39:56 by acoezard          #+#    #+#              #
-#    Updated: 2022/04/08 17:00:45 by acoezard         ###   ########.fr        #
+#    Updated: 2022/04/08 21:23:47 by acoezard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,24 +44,23 @@ build:
 	@echo ${__GREEN}"ready"${__WHITE}" - docker services are up"${__EOC}
 
 start:
-	@docker compose ${FLAGS} start &> /dev/null
+	@docker compose ${FLAGS} start > /dev/null
 	@echo ${__GREEN}"ready"${__WHITE}" - docker services have been started"${__EOC}
 
 stop:
-	@docker compose ${FLAGS} stop &> /dev/null
-	@echo ${__GREEN}"stopped"${__WHITE}" - docker services have been stopped"${__EOC}
+	@docker compose ${FLAGS} stop > /dev/null
+	@echo ${__RED}"stopped"${__WHITE}" - docker services have been stopped"${__EOC}
 
 status:
 	@docker compose ${FLAGS} ps
 
 clean:
-	@rm -rf ./data/ &> /dev/null
+#	@rm -rf /home/acoezard/data &> /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker data"${__EOC}
 
 fclean: stop clean
-#	@docker stop ${shell docker ps -qa} > /dev/null
-#	@docker rm ${shell docker ps -qa} > /dev/null
-#	@docker rmi ${shell docker images -qa} > /dev/null
+	@docker rm ${shell docker ps -qa} > /dev/null
+	@docker rmi ${shell docker images -qa} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
 	@docker volume rm ${shell docker volume ls -q} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker volumes(s)"${__EOC}
@@ -72,4 +71,4 @@ fclean: stop clean
 
 re: fclean all
 
-.PHONY: all fclean clean re
+.PHONY: all start stop status fclean clean re
