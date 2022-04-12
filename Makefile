@@ -40,22 +40,23 @@ __EOC			:=	"\033[0;0m"
 all: build
 
 build:
-	@docker compose ${FLAGS} up -d
+	@docker-compose ${FLAGS} up -d --build
 	@echo ${__GREEN}"ready"${__WHITE}" - docker services are up"${__EOC}
 
 start:
-	@docker compose ${FLAGS} start > /dev/null
+	@docker-compose ${FLAGS} start > /dev/null
 	@echo ${__GREEN}"ready"${__WHITE}" - docker services have been started"${__EOC}
 
 stop:
-	@docker compose ${FLAGS} stop > /dev/null
+	@docker-compose ${FLAGS} stop > /dev/null
 	@echo ${__RED}"stopped"${__WHITE}" - docker services have been stopped"${__EOC}
 
 status:
-	@docker compose ${FLAGS} ps
+	@docker-compose ${FLAGS} ps
 
 clean:
-#	@rm -rf /home/acoezard/data &> /dev/null
+#	@rm -rf /home/acoezard/data/www/* > /dev/null
+#	@rm -rf /home/acoezard/data/database/* > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker data"${__EOC}
 
 fclean: stop clean
@@ -64,10 +65,10 @@ fclean: stop clean
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
 	@docker volume rm ${shell docker volume ls -q} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker volumes(s)"${__EOC}
-	@docker network rm ${shell docker network ls --filter type=custom -q} > /dev/null
+	@docker network rm ${shell docker network ls -q} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker network(s)"${__EOC}
-	@docker builder prune -af > /dev/null
-	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker cache"${__EOC}
+#	@docker builder prune -af > /dev/null
+#	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker cache"${__EOC}
 
 re: fclean all
 

@@ -1,7 +1,7 @@
 <?php
 	define("DB_NAME",				getenv("MARIADB_DATABASE"));
-	define("DB_USER",				getenv("MARIADB_USER"));
-	define("DB_PASSWORD",			getenv("MARIADB_PASSWORD"));
+	define("DB_USER",				getenv("root"));
+	define("DB_PASSWORD",			getenv("root_mdp"));
 	define("DB_HOST",				getenv("WORDPRESS_MARIADB_HOST"));
 	define("DB_CHARSET",			getenv("MARIADB_CHARSET"));
 	define("DB_COLLATE",			getenv("MARIADB_COLLATE"));
@@ -14,7 +14,7 @@
 	define('SECURE_AUTH_SALT',		'h`Q}eo(h,AgN{C vqu4RU@/}O,,JUQP,8h8^W7pg+g|@17&5J&d!+,Y6jVp@/! 2');
 	define('LOGGED_IN_SALT',		'gr18NT+Ec2|+vs2bk` w1[/7 FeX_3WWbWBh|MX+;N#,N(L.4NM=u;x1`*nO,a_5');
 	define('NONCE_SALT',			'MDg{iGuQ1=OWbAMsVS*?OU_Icxc~FL8|e`]vb-ODU--w*;}/}i-;ZS9M@BXVc(qd');
-	#define("CONCATENATE_SCRIPTS",	false);
+	define("CONCATENATE_SCRIPTS",	false);
 
 	$table_prefix =					getenv("MARIADB_PREFIX");
 

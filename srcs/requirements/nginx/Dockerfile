@@ -36,8 +36,6 @@ RUN		openssl req \
 		-keyout /etc/nginx/ssl/inception.key \
 		-out /etc/nginx/ssl/inception.cert
 
-RUN		openssl dhparam -out /etc/nginx/ssl/inception.dhparam 2048
-
 #==== OPENRC ==================================================================#
 RUN		apk add openrc
 RUN		rc-update add nginx default

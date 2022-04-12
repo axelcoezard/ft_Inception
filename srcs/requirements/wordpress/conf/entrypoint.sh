@@ -11,16 +11,16 @@ wp		core download \
 		--allow-root \
 		--path="/var/www/html"
 
-#wp		core config \
-#		--allow-root \
-#		--dbname=${MARIADB_DATABASE} \
-#		--dbuser=${MARIADB_ROOT_USER} \
-#		--dbpass=${MARIADB_ROOT_PASSWORD} \
-#		--dbhost=${MARIADB_HOST} \
-#		--dbprefix=${MARIADB_PREFIX}
+wp		core config \
+		--allow-root \
+		--dbname=${MARIADB_DATABASE} \
+		--dbuser=${MARIADB_USER} \
+		--dbpass=${MARIADB_PASSWORD} \
+		--dbhost=${MARIADB_HOST} \
+		--dbprefix=${MARIADB_PREFIX}
 
-rm		-f /var/www/html/wp-config.php
-cp		default.php /var/www/html/wp-config.php
+#rm		-f /var/www/html/wp-config.php
+#cp		default.php /var/www/html/wp-config.php
 
 wp		core install \
 		--allow-root \
@@ -31,4 +31,4 @@ wp		core install \
 		--admin_email=${WORDPRESS_EMAIL} \
 		--path="/var/www/html"
 
-exec		php-fpm7 -F
+exec	php-fpm7 -F
