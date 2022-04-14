@@ -40,7 +40,7 @@ __EOC			:=	"\033[0;0m"
 all: build
 
 build:
-	@docker-compose ${FLAGS} up -d --build
+	@docker-compose ${FLAGS} up --build
 	@echo ${__GREEN}"ready"${__WHITE}" - docker services are up"${__EOC}
 
 start:
@@ -59,7 +59,7 @@ clean:
 #	@rm -rf /home/acoezard/data/database/* > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker data"${__EOC}
 
-fclean: stop clean
+fclean: clean
 	@docker rm ${shell docker ps -qa} > /dev/null
 	@docker rmi ${shell docker images -qa} > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
@@ -70,6 +70,6 @@ fclean: stop clean
 #	@docker builder prune -af > /dev/null
 #	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker cache"${__EOC}
 
-re: fclean all
+re: stop all
 
 .PHONY: all start stop status fclean clean re

@@ -1,10 +1,17 @@
 <?php
 	define("DB_NAME",				getenv("MARIADB_DATABASE"));
-	define("DB_USER",				getenv("root"));
-	define("DB_PASSWORD",			getenv("root_mdp"));
+	define("DB_USER",				getenv("MARIADB_USER"));
+	define("DB_PASSWORD",			getenv("MARIADB_PASSWORD"));
 	define("DB_HOST",				getenv("WORDPRESS_MARIADB_HOST"));
 	define("DB_CHARSET",			getenv("MARIADB_CHARSET"));
 	define("DB_COLLATE",			getenv("MARIADB_COLLATE"));
+
+	echo getenv("MARIADB_DATABASE") . "\n";
+	echo getenv("MARIADB_USER") . "\n";
+	echo getenv("MARIADB_PASSWORD") . "\n";
+	echo getenv("WORDPRESS_MARIADB_HOST") . "\n";
+	echo getenv("MARIADB_CHARSET") . "\n";
+	echo getenv("MARIADB_COLLATE") . "\n";
 
 	define('AUTH_KEY',				'2>#Zc9]> ChGj2`rJX++n{ /~Jc)ha^j1:EX(n_oj&.jMbSy--5qpPcUX9bs$F_I');
 	define('SECURE_AUTH_KEY',		'PN/_MlG:%[*`cgsWc!VnkU6&^K$A6$%+|sGrBf9F)SRmq]^-[$#Roi#-#ir.;;/Z');
@@ -18,7 +25,7 @@
 
 	$table_prefix =					getenv("MARIADB_PREFIX");
 
-	define("WP_DEBUG", false);
+	define("WP_DEBUG", true);
 	if (!defined("ABSPATH"))
 		define("ABSPATH", __DIR__ . "/");
 
