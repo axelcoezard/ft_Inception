@@ -63,13 +63,16 @@ fclean: clean
 	@docker rmi -f nginx > /dev/null
 	@docker rmi -f mariadb > /dev/null
 	@docker rmi -f wordpress > /dev/null
+	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker images(s)"${__EOC}
+	@docker rm -f nginx > /dev/null
+	@docker rm -f mariadb > /dev/null
+	@docker rm -f wordpress > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker container(s)"${__EOC}
-#	@docker volume rm ${shell docker volume ls -q} > /dev/null
+	@docker volume rm -f inception_database > /dev/null
+	@docker volume rm -f inception_www > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker volumes(s)"${__EOC}
-#	@docker network rm ${shell docker network ls -q} > /dev/null
+	@docker network rm inception > /dev/null
 	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker network(s)"${__EOC}
-#	@docker builder prune -af > /dev/null
-#	@echo ${__BLUE}"info"${__WHITE}" - cleaned docker cache"${__EOC}
 
 re: stop fclean all
 
