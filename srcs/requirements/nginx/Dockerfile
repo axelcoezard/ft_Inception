@@ -41,6 +41,5 @@ RUN		apk add openrc
 RUN		rc-update add nginx default
 
 #==============================================================================#
-EXPOSE	80
 EXPOSE	443
 CMD		["nginx", "-g", "daemon off;"]

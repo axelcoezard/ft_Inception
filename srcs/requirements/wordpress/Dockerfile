@@ -51,15 +51,15 @@ RUN		rm -f /etc/php7/php-fpm.d/www.conf
 COPY	conf/default.conf /etc/php7/php-fpm.d/www.conf
 
 #==== WORDPRESS ===============================================================#
-RUN		mkdir -p /var/www/html
-RUN		adduser -u 82 -D -S -G www-data www-data
-RUN		chmod 777 -R /var/www/html
-RUN		chown -R www-data:www-data /var/www/html
+RUN		mkdir 					-p /var/www/html
+RUN		adduser 				-u 82 -D -S -G www-data www-data
+RUN		chmod 777 				-R /var/www/html
+RUN		chown 					-R www-data:www-data /var/www/html
 
-COPY	conf/default.php .
-COPY	conf/entrypoint.sh .
-RUN		chmod +x entrypoint.sh
-ENTRYPOINT	["./entrypoint.sh"]
+COPY	./conf/wp-config.php	./
+COPY	./conf/entrypoint.sh	./
+RUN		chmod +x 				./entrypoint.sh
+ENTRYPOINT						["./entrypoint.sh"]
 
 #==============================================================================#
 EXPOSE	9000
