@@ -40,7 +40,7 @@ __EOC			:=	"\033[0;0m"
 all: build
 
 build:
-	@docker compose ${FLAGS} up --build
+	@docker compose ${FLAGS} up -d --build
 	@echo ${__GREEN}"ready"${__WHITE}" - docker services are up"${__EOC}
 
 start:
